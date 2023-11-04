@@ -1,0 +1,8 @@
+{
+    "files.autoSave": "onFocusChange",
+    "editor.renderWhitespace": "boundary",
+    "[python]": {
+        "editor.tabSize": 4,
+    },
+    "autoDocstring.docstringFormat": "Google"
+}

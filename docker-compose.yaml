@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  server:
+    container_name: backend
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /app
+    stdin_open: true
+    command: bash
+  app:
+    container_name: frontend
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    volumes:
+      - type: bind
+        source: ./frontend
+        target: ./src
+    stdin_open: true
+    command: bash
