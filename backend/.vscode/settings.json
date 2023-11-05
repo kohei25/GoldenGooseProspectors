@@ -3,6 +3,12 @@
     "editor.renderWhitespace": "boundary",
     "[python]": {
         "editor.tabSize": 4,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
     },
-    "autoDocstring.docstringFormat": "Google"
+    "isort.args":["--profile", "black"],
+    "autoDocstring.docstringFormat": "google",
 }
