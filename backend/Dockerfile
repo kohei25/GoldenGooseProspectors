@@ -1,24 +1,18 @@
-FROM python:3.12.0-bullseye
+FROM python:3.12.2-bullseye
 
-ENV APPDIRPATH /app
-WORKDIR ${APPDIRPATH}
+WORKDIR /app
 
 RUN apt update &&\
     rm -rf ~/.cache &&\
     apt clean all
 
-# pipxのインストール
-RUN python -m pip install --upgrade pip &&\
-    python -m pip install --user pipx &&\
-    python -m pipx ensurepath &&\
-    python -m pipx completions &&\
-    echo "eval \"$(register-python-argcomplete pipx)\"" >> ~/.bashrc
+RUN pip install --upgrade pip
+RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.8.0 python3 -
 
-ENV PATH "/root/.local/bin:${PATH}"
+ENV PATH /root/.local/bin:$PATH
+RUN poetry config virtualenvs.create false
 
-# poetryのインストール
-RUN touch ~/.bash_completion &&\
-    pipx install poetry &&\
-    pipx upgrade poetry &&\
-    poetry completions bash >> ~/.bash_completion
+COPY pyproject.toml poetry.lock ./
+RUN poetry install
 
+COPY . .
