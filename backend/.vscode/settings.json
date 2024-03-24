@@ -1,14 +1,17 @@
 {
     "files.autoSave": "onFocusChange",
     "editor.renderWhitespace": "boundary",
+    "files.insertFinalNewline": true,
     "[python]": {
-        "editor.tabSize": 4,
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true,
+        // isortの設定
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        },
+            "source.organizeImports": "explicit"
+        }
     },
-    "isort.args":["--profile", "black"],
-    "autoDocstring.docstringFormat": "google",
+    "black-formatter.args": [
+        "--line-length", "120"
+    ],
+    "isort.args": ["--profile", "black"],
 }
