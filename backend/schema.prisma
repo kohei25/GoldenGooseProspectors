@@ -1,0 +1,33 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:data/btc.sqlite"
+}
+
+generator db {
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
+}
+
+model BTCTicker {
+    id      String @id @default(uuid())
+    channel String
+    ask     Int
+    bid     Int
+    high    Int
+    last    Int
+    low     Int
+    symbol  String
+    timestamp DateTime
+    volume  Float
+}
+
+model BTCKline {
+  id       String @id @default(uuid())
+  openTime Float
+  open     Float
+  high     Float
+  low      Float
+  close    Float
+  volume   Float
+}
